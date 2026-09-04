@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Manual Tracking Trainer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div>
+    <div class="eyebrow">MANUAL TRACKING LAB</div>
+    <h1>Finger Tracking Trainer</h1>
+  </div>
+  <div class="status"><i id="dot"></i><span id="status">พร้อม</span></div>
+</header>
+
+<main>
+  <section class="viewer">
+    <div class="camera">
+      <video id="video" playsinline autoplay muted></video>
+      <canvas id="fx"></canvas>
+
+      <div id="startOverlay" class="startOverlay">
+        <div class="hand">☝️</div>
+        <h2>ฝึกเส้นตามนิ้ว</h2>
+        <p>เปิดกล้อง แล้วยกนิ้วชี้เพื่อเริ่มทำเส้นแบบ manual tracking</p>
+        <button id="openBtn" class="primary big">เปิดกล้อง</button>
+      </div>
+
+      <div class="topHud">
+        <span id="detect">HAND: --</span>
+        <span id="perf">TRACK: --</span>
+      </div>
+      <div class="bottomHud">
+        <button id="trackBtn" disabled>เริ่มลากเส้น</button>
+        <button id="clearBtn">ล้าง</button>
+      </div>
+    </div>
+
+    <div class="hint">
+      <b>เป้าหมาย:</b> ให้ปลายนิ้วชี้เป็นตัวควบคุมเส้น • เส้นจะหน่วงน้อยและถูกทำให้ลื่นขึ้นอัตโนมัติ
+    </div>
+  </section>
+
+  <aside class="panel">
+    <h2>Manual Tracking</h2>
+
+    <label>สไตล์เส้น</label>
+    <div class="styleGrid">
+      <button class="style active" data-style="neon">Neon</button>
+      <button class="style" data-style="solid">Solid</button>
+      <button class="style" data-style="dot">Dot</button>
+    </div>
+
+    <label>ความลื่น</label>
+    <input id="smooth" type="range" min="0" max="80" value="28">
+    <div class="range"><span>ไว</span><b id="smoothVal">28</b><span>นิ่ง</span></div>
+
+    <label>ความยาวเส้น</label>
+    <input id="length" type="range" min="20" max="180" value="85">
+    <div class="range"><span>สั้น</span><b id="lengthVal">85</b><span>ยาว</span></div>
+
+    <label>ขนาดจุดปลายนิ้ว</label>
+    <input id="size" type="range" min="3" max="18" value="8">
+    <div class="range"><span>เล็ก</span><b id="sizeVal">8</b><span>ใหญ่</span></div>
+
+    <div class="checks">
+      <label class="check"><input id="showHand" type="checkbox"> แสดงโครงมือ</label>
+      <label class="check"><input id="mirror" type="checkbox" checked> กลับภาพแบบกล้องหน้า</label>
+    </div>
+
+    <div class="stats">
+      <h3>Live</h3>
+      <div><span>การตรวจจับ</span><b id="confidence">--</b></div>
+      <div><span>จุดเส้น</span><b id="count">0</b></div>
+      <div><span>FPS</span><b id="fps">--</b></div>
+    </div>
+
+    <details>
+      <summary>วิธีใช้</summary>
+      <p>วางมือให้เห็นปลายนิ้วชี้ชัด ๆ กด “เริ่มลากเส้น” แล้วขยับนิ้วตามจังหวะที่ต้องการ เส้นจะถูกเก็บไว้จนกว่าจะกดล้าง</p>
+    </details>
+  </aside>
+</main>
+
+<footer>MediaPipe Hand Landmarker • ประมวลผลในอุปกรณ์ของคุณ</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
